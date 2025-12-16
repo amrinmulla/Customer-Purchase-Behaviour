@@ -42,6 +42,6 @@ if st.button('Predict Customer Type'):
   prediction = model.predict(data)
 
   if prediction[0] == 1:
-    st.success("🟢 High Spender Customer")
+    st.success("High Spender Customer")
   else:
-    st.warning("🟡 Low Spender Customer")
+    st.warning("Low Spender Customer")
