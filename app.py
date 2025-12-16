@@ -12,18 +12,38 @@ st.write("This application predicts whether a customer is a **High Spender** or 
 
 age = st.number_input("Age", min_value=18, max_value=80, value=30)
 income = st.number_input("Annual Income", min_value=0, value=50000)
-purchase_frequency = st.number_input("Purchase Frequency", min_value=1, value=5)
+age = st.number_input("Age", min_value=18, max_value=80, value=21,step=1)
+income = st.number_input("Annual Income", min_value=0, value=50000)
+region = st.selectbox("Region", ["North", "South", "East", "West"])
+satisfaction_score = st.number_input("Satisfaction Score", min_value=0, max_value=10, value=5)
+promo_usage = st.number_input("Promo Usage", min_value=0, value=0)
+gender = st.selectbox("Gender", ["Male", "Female"])
+education = st.selectbox("Education", ["High School", "Bachelor", "Masters", "College"])
+loyalty = st.selectbox("Loyalty Status", ["Regular", "Silver", "Gold"])
+purchase_freq = st.selectbox("Purchase Frequency", ["rare", "occasional", "frequent"])
+product_category = st.selectbox(
+    "Product Category",
+    ["Beauty", "Books", "Clothing", "Electronics", "Food", "Health", "Home"]
+)
 
 if st.button('Predict Customer Type'):
   data = pd.DataFrame(0, index=[0], columns=model_columns)
   data['age'] = age
   data['income'] = income
-  data['purchase_frequency'] = purchase_frequency
-  predictions = model.predict(data)
+  data["promotion_usage"] = promo_usage
+  data["satisfaction_score"] = satisfaction_score
 
-  if predictions[0] == 1:
-    st.success("The customer is a **High Spender**")
-    st.write('Customer is likely to spend more so they can be targeted for premium offers!')
+  # One-hot encoding manually
+  data[f"gender_{gender}"] = 1
+  data[f"education_{education}"] = 1
+  data[f"region_{region}"] = 1
+  data[f"loyalty_status_{loyalty}"] = 1
+  data[f"purchase_frequency_{purchase_freq}"] = 1
+  data[f"product_category_{product_category}"] = 1
+
+  prediction = model.predict(data)
+
+  if prediction[0] == 1:
+    st.success("🟢 High Spender Customer")
   else:
-    st.success("The customer is a **Low Spender**")
-    st.write('Customer is likely to spend less so they can be targeted for regular offers!')
+    st.warning("🟡 Low Spender Customer")
