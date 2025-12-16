@@ -1,6 +1,7 @@
 import streamlit as st
 import joblib
 import numpy as np
+import pandas as pd
 
 model = joblib.load('best_model_for_customer_purchase.pkl')
 model_columns = joblib.load("model_columns.pkl")
