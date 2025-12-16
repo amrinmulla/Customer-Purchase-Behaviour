@@ -17,7 +17,7 @@ purchase_frequency = st.number_input("Purchase Frequency", min_value=1, value=5)
 if st.button('Predict Customer Type'):
   data = pd.DataFrame(0, index=[0], columns=model_columns)
   data['age'] = age
-  data['annual_income'] = income
+  data['income'] = income
   data['purchase_frequency'] = purchase_frequency
   predictions = model.predict(data)
 
