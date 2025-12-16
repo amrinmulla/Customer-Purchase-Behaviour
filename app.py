@@ -7,8 +7,7 @@ model = joblib.load('best_model_for_customer_purchase.pkl')
 model_columns = joblib.load("model_columns.pkl")
 
 st.title("Customer Purchase Behavior Prediction")
-st.write("This application predicts whether a customer is a **High Spender** or **Low Spender** "
-    "based on their purchase behavior.")
+st.write("This application predicts whether a customer is a **High Spender** or **Low Spender** based on their purchase behavior.")
 
 age = st.number_input("Age", min_value=18, max_value=80, value=21,step=1)
 income = st.number_input("Income", min_value=0, value=50000)
