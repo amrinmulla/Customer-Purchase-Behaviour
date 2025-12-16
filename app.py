@@ -15,7 +15,7 @@ purchase_frequency = st.number_input("Purchase Frequency", min_value=1, value=5)
 
 if st.button('Predict Customer Type'):
   data = np.array([[age,income,purchase_frequency]])
-  predictions = model.predict(data)[0]
+  predictions = model.predict(data)
 
   if predictions[0] == 1:
     st.success("The customer is a **High Spender**")
