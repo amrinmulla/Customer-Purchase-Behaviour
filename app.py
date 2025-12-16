@@ -10,7 +10,7 @@ st.title("Customer Purchase Behavior Prediction")
 st.write("This application predicts whether a customer is a **High Spender** or **Low Spender** based on their purchase behavior.")
 
 age = st.number_input("Age", min_value=18, max_value=80, value=21,step=1)
-income = st.number_input("Income", min_value=0, value=50000)
+income = st.number_input("Income", min_value=0, value=50000,step=5000)
 region = st.selectbox("Region", ["North", "South", "East", "West"])
 satisfaction_score = st.number_input("Satisfaction Score", min_value=0, max_value=10, value=5)
 promo_usage = st.number_input("Promo Usage", min_value=0, value=0)
